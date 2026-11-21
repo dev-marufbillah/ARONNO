@@ -24,7 +24,7 @@ export default function Template({ children }: { children: ReactNode }) {
             ? { opacity: 0, visibility: "hidden" }
             : { opacity: [1, 1, 0], visibility: ["visible", "visible", "hidden"] }
         }
-        transition={{ duration: reduceMotion ? 0 : 0.68, times: [0, 0.55, 1], ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: reduceMotion ? 0 : 1, times: [0, 0.55, 1], ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="flex flex-col items-center">
           <span className="font-serif text-3xl tracking-[0.24em]">ARONNO</span>

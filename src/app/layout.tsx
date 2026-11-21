@@ -6,6 +6,7 @@ import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Footer from "@/components/layout/Footer";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import Navbar from "@/components/layout/Navbar";
+import NavigationScrollReset from "@/components/layout/NavigationScrollReset";
 import StoreIntro from "@/components/layout/StoreIntro";
 import AppProviders from "@/components/providers/AppProviders";
 import { getCategories } from "@/lib/storefront";
@@ -73,6 +74,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     <html lang="en" className={`${playfair.variable} ${montserrat.variable}`}>
       <body className="bg-white font-sans text-black-deep antialiased">
         <AppProviders>
+          <NavigationScrollReset />
           <AnnouncementBar enabled={site.announcementEnabled} text={site.announcementText} />
           <Navbar brandName={site.brandName} tagline={site.tagline} navLinks={navLinks} />
           <StoreIntro
