@@ -125,6 +125,9 @@ export const siteSettingsSchema = z.object({
   tagline: z.string().trim().max(180),
   announcementEnabled: z.boolean(),
   announcementText: z.string().trim().max(180),
+  introEyebrow: z.string().trim().max(100),
+  introTitle: z.string().trim().min(1).max(100),
+  introDescription: z.string().trim().max(240),
   heroEyebrow: z.string().trim().max(100),
   heroTitle: z.string().trim().min(1).max(180),
   heroDescription: z.string().trim().max(500),
@@ -148,6 +151,11 @@ export const siteSettingsSchema = z.object({
   newsletterDescription: z.string().trim().max(500),
   contactEmail: z.email(),
   contactPhone: z.string().trim().max(40),
+  whatsappNumber: z
+    .string()
+    .trim()
+    .max(40)
+    .refine((value) => value === "" || /^[+\d\s().-]+$/.test(value), "Enter a WhatsApp number with its country code."),
   contactAddress: z.string().trim().max(240),
   instagramUrl: z.url().or(z.literal("")),
   facebookUrl: z.url().or(z.literal("")),

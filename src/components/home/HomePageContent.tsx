@@ -7,6 +7,7 @@ import Container from "@/components/ui/Container";
 import ProductCard from "@/components/product/ProductCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { NewsletterForm } from "@/components/forms/StoreForms";
+import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import { heroImage, socialGallery, testimonials } from "@/lib/demo-data";
 import type { SiteSettings } from "@/lib/store-settings";
 
@@ -23,6 +24,7 @@ export default function HomePageContent({
 }) {
   return (
     <>
+      <WhatsAppButton phoneNumber={settings.whatsappNumber} />
       <section className="relative min-h-[620px] overflow-hidden bg-black-deep">
         <Image src={settings.heroImage || heroImage} alt="Luxury editorial hero" fill priority unoptimized className="object-cover opacity-80" />
         <div className="absolute inset-0 bg-gradient-to-r from-black-deep via-black-deep/70 to-black-deep/20" />

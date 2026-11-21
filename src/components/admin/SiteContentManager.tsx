@@ -216,6 +216,15 @@ export default function SiteContentManager({ initialSettings }: { initialSetting
         {textField("announcementText", "Announcement text", { wide: true })}
       </Section>
 
+      <Section title="Animated welcome screen">
+        {textField("introEyebrow", "Small welcome heading")}
+        {textField("introTitle", "Welcome title")}
+        {textArea("introDescription", "Welcome description")}
+        <p className="text-xs leading-5 text-neutral-500 md:col-span-2">
+          This short animation appears when a visitor first opens the store. It respects reduced-motion settings.
+        </p>
+      </Section>
+
       <Section title="Homepage hero">
         {textField("heroEyebrow", "Small heading")}
         {textField("heroPrimaryLabel", "Primary button label")}
@@ -248,6 +257,10 @@ export default function SiteContentManager({ initialSettings }: { initialSetting
         {textField("tagline", "Tagline")}
         {textField("contactEmail", "Contact email", { type: "email" })}
         {textField("contactPhone", "Contact phone", { type: "tel" })}
+        {textField("whatsappNumber", "WhatsApp number (include country code)", { type: "tel", wide: true })}
+        <p className="text-xs leading-5 text-neutral-500 md:col-span-2">
+          Save an international number such as +8801XXXXXXXXX. The floating WhatsApp button appears after you save it.
+        </p>
         {textField("contactAddress", "Store address", { wide: true })}
         {textField("instagramUrl", "Instagram URL", { type: "url" })}
         {textField("facebookUrl", "Facebook URL", { type: "url" })}

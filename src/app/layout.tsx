@@ -6,6 +6,7 @@ import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Footer from "@/components/layout/Footer";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import Navbar from "@/components/layout/Navbar";
+import StoreIntro from "@/components/layout/StoreIntro";
 import AppProviders from "@/components/providers/AppProviders";
 import { getCategories } from "@/lib/storefront";
 import { NAV_LINKS } from "@/lib/constants";
@@ -74,6 +75,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <AppProviders>
           <AnnouncementBar enabled={site.announcementEnabled} text={site.announcementText} />
           <Navbar brandName={site.brandName} tagline={site.tagline} navLinks={navLinks} />
+          <StoreIntro
+            eyebrow={site.introEyebrow}
+            title={site.introTitle}
+            description={site.introDescription}
+          />
           <main className="min-h-screen pb-20 lg:pb-0">{children}</main>
           <Footer siteSettings={site} />
           <MobileBottomNav />

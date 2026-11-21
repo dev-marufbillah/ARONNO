@@ -73,6 +73,7 @@ Vercel deployment. Check the deployment log, then verify:
 
 - The homepage and shop load.
 - The owner can sign in and open `/admin`.
+- In Site CMS, set the animated welcome text and an international-format WhatsApp number, then save. Confirm the floating button opens the correct chat.
 - A category and real product can be added.
 - Product and CMS images upload and still load after a new deployment.
 - A test Cash on Delivery order can be placed and managed in the admin.
