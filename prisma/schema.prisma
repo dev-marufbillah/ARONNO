@@ -1,0 +1,95 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String?
+  email        String   @unique
+  passwordHash String?
+  role         String   @default("CUSTOMER")
+  phone        String?
+  posts        Post[]
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  @@map("users")
+}
+
+model Post {
+  id          Int       @id @default(autoincrement())
+  title       String
+  slug        String    @unique
+  content     String
+  excerpt     String?
+  authorId    Int       @map("author_id")
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  status      String    @default("DRAFT")
+  imageUrl    String?   @map("image_url")
+  tags        String?
+  publishedAt DateTime? @map("published_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+updatedAt DateTime @default(now()) @updatedAt @map("updated_at")  @@map("posts")
+}
+
+model Category {
+  id          Int        @id @default(autoincrement())
+  name        String
+  slug        String     @unique
+  description String?
+  imageUrl    String?    @map("image_url")
+  parentId    Int?       @map("parent_id")
+  parent      Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryTree")
+  products    Product[]
+  createdAt   DateTime   @default(now()) @map("created_at")
+  @@map("categories")
+}
+
+model Product {
+  id                Int       @id @default(autoincrement())
+  sku               String?
+  brand             String?
+  name              String
+  slug              String    @unique
+  categoryId        Int?      @map("category_id")
+  category          Category? @relation(fields: [categoryId], references: [id])
+  subcategory       String?
+  description       String?
+  shortDescription  String?   @map("short_description")
+  price             Float
+  compareAtPrice    Float?    @map("compare_at_price")
+  currency          String    @default("BDT")
+  stockQuantity     Int       @default(0) @map("stock_quantity")
+  thumbnail         String?
+  images            String?
+  rating            Float     @default(0)
+  reviewCount       Int       @default(0) @map("review_count")
+  featured          Boolean   @default(false)
+  bestSeller        Boolean   @default(false) @map("best_seller")
+  newArrival        Boolean   @default(false) @map("new_arrival")
+  tags              String?
+  specifications    String?
+  lowStockThreshold Int?      @default(3) @map("low_stock_threshold")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  @@map("products")
+}
+
+model Order {
+  id            Int      @id @default(autoincrement())
+  orderNumber   String   @unique @map("order_number")
+  customerName  String   @map("customer_name")
+  email         String
+  phoneNumber   String   @map("phone_number")
+  status        String   @default("PENDING")
+  paymentStatus String   @default("PENDING") @map("payment_status")
+  paymentMethod String   @default("COD") @map("payment_method")
+  total         Float
+  createdAt     DateTime @default(now()) @map("created_at")
+  @@map("orders")
+}
